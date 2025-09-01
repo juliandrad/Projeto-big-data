@@ -1,0 +1,196 @@
+/* Cartucho.css */
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Menu lateral */
+.sidebar {
+  width: 220px;
+  background-color: #1f2937;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.menu-button:hover {
+  background-color: #374151;
+}
+
+.menu-button svg {
+  margin-right: 8px;
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.submenu button {
+  background: none;
+  border: none;
+  color: #d1d5db;
+  padding: 6px 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.submenu button:hover {
+  color: #fff;
+}
+
+/* Área principal */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Container do componente */
+.cartucho-container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+/* Formulário */
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.form-container h2 {
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-container button {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.form-container button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Grid de cartuchos */
+.grid-cartuchos {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.grid-cartuchos h2 {
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+.grid-cartuchos table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grid-cartuchos th,
+.grid-cartuchos td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.grid-cartuchos th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+.grid-cartuchos button {
+  background-color: #10b981;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.grid-cartuchos button:hover {
+  background-color: #059669;
+}
+
+/* QR Code */
+.qr-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-container h3 {
+  margin-bottom: 15px;
+  color: #111827;
+}

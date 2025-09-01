@@ -1,0 +1,178 @@
+/* Container principal da página de usuário */
+.usuario-container {
+  max-width: 1500px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Cabeçalho */
+.usuario-container .header {
+  margin-bottom: 24px;
+}
+
+.usuario-container .header h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.usuario-container .header div {
+  color: #555;
+}
+
+/* Formulário */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #fefefe;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.form-container h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.form-container label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-container input,
+.form-container select {
+  margin-top: 6px;
+  padding: 8px 16px; /* menor padding para compactar */
+  font-size: 14px;
+  margin:10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+  border-color: #4f8294;
+}
+
+/* Botão de envio */
+.form-container button {
+  padding: 6px 12px; /* vertical 6px, horizontal 12px */
+  margin:15px;
+  font-size: 13px; /* fonte menor */
+  max-width: 150px; /* largura máxima */
+  background-color: #4f8294;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-container button:hover {
+  background-color: #3b6570;
+}
+
+/* Grid de usuários */
+.grid-usuarios {
+  margin-top: 32px;
+}
+
+.grid-usuarios h2 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #333;
+}
+
+.grid-usuarios table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grid-usuarios th,
+.grid-usuarios td {
+  padding: 12px 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.grid-usuarios th {
+  background-color: #f4f4f4;
+}
+
+.grid-usuarios td button {
+  margin-right: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.grid-usuarios td button.editar {
+  background-color: #4f8294;
+  color: white;
+  align-items: center;
+}
+
+.grid-usuarios td button.editar:hover {
+  background-color: #3b6570;
+}
+
+.grid-usuarios td button.excluir {
+  background-color: #f44336;
+  color: white;
+}
+
+.grid-usuarios td button.excluir:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsividade */
+@media (max-width: 650px) {
+  .usuario-container {
+    padding: 16px;
+    margin: 10px;
+  }
+
+  .form-container {
+    padding: 16px;
+  }
+
+  .grid-usuarios table,
+  .grid-usuarios thead,
+  .grid-usuarios tbody,
+  .grid-usuarios th,
+  .grid-usuarios td,
+  .grid-usuarios tr {
+    display: block;
+  }
+
+  .grid-usuarios th {
+    display: none;
+  }
+
+  .grid-usuarios td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 4px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .grid-usuarios td::before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}

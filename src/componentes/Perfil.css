@@ -1,0 +1,259 @@
+/* Layout principal */
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #edeff0;
+}
+
+/* Menu lateral */
+.sidebar {
+  width: 250px;
+  background-color: #4f8294;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid #374151;
+}
+
+nav {
+  flex: 1;
+  padding: 16px;
+}
+
+nav button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 4px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+nav button:hover {
+  background-color: #374151;
+}
+
+/* Submenu */
+.submenu {
+  padding-left: 20px;
+  margin-top: 4px;
+}
+
+.submenu button {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+/* Área principal */
+.main {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+/* Container do perfil */
+.perfil-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Cabeçalho */
+.perfil-container .header {
+  margin-bottom: 24px;
+}
+
+.perfil-container .header h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+/* Formulário de perfil */
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-container label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-container input,
+.form-container select {
+  margin-top: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+  border-color: #4f8294;
+}
+
+/* Botão de salvar perfil */
+.form-container button {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #4f8294;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-container button:hover {
+  background-color: #3b6570;
+}
+
+/* Grid de permissões */
+.permissoes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.perm-item {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.perm-item.selecionado {
+  background-color: #4f8294;
+  color: white;
+  border-color: #4f8294;
+}
+
+.perm-item:hover {
+  background-color: #3b6570;
+  color: white;
+  border-color: #3b6570;
+}
+
+/* Grid de perfis existentes */
+.grid-perfis {
+  margin-top: 32px;
+}
+
+.grid-perfis h2 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #333;
+}
+
+.grid-perfis table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grid-perfis th,
+.grid-perfis td {
+  padding: 12px 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.grid-perfis th {
+  background-color: #f4f4f4;
+}
+
+.grid-perfis td button {
+  margin-right: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.grid-perfis td button.editar {
+  background-color: #4f8294;
+  color: white;
+}
+
+.grid-perfis td button.editar:hover {
+  background-color: #3b6570;
+}
+
+.grid-perfis td button.excluir {
+  background-color: #f44336;
+  color: white;
+}
+
+.grid-perfis td button.excluir:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsividade */
+@media (max-width: 650px) {
+  .perfil-container {
+    padding: 16px;
+    margin: 10px;
+  }
+
+  .form-container {
+    padding: 16px;
+  }
+
+  .grid-perfis table,
+  .grid-perfis thead,
+  .grid-perfis tbody,
+  .grid-perfis th,
+  .grid-perfis td,
+  .grid-perfis tr {
+    display: block;
+  }
+
+  .grid-perfis th {
+    display: none;
+  }
+
+  .grid-perfis td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 4px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .grid-perfis td::before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}
