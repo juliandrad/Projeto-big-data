@@ -99,33 +99,17 @@ function Usuario() {
 
   return (
     <div className="layout">
-      {/* Sidebar */}
       <aside className="sidebar">
         <div className="logo">InvenTI</div>
         <nav>
-          <SidebarMenu icon={<FaChartBar />} label="Início" path="/home"
-            submenuItems={[{ label: "Dashboard", path: "/home" }]}
-          />
-          <SidebarMenu
-            icon={<FaCogs />}
-            label="Configurações"
-            submenuItems={[
-              { label: "Usuários", path: "/usuarios" },
-              { label: "Perfis", path: "/perfil" },
-            ]}
-          />
-          <SidebarMenu
-            icon={<FaLaptop />}
-            label="Equipamentos"
-            submenuItems={[
-              { label: "Notebooks" },
-              { label: "Monitores" },
-              { label: "Impressoras", path: "/impressora" },
-              { label: "Cartuchos", path: "/cartucho" },
-              { label: "Servidores" },
-              { label: "Periféricos" },
-            ]}
-          />
+          <SidebarMenu icon={<FaChartBar />} label="Início" submenuItems={[{ label: "Dashboard", path: "/home" }]} />
+          <SidebarMenu icon={<FaCogs />} label="Configurações" submenuItems={[{ label: "Usuários", path: "/usuarios" }, { label: "Perfis", path: "/perfil" }]} />
+          <SidebarMenu icon={<FaLaptop />} label="Equipamentos" submenuItems={[
+            { label: "Computadores", path: "/notedesk" },
+            { label: "Monitores" },
+            { label: "Impressoras", path: "/impressora" },
+            { label: "Cartuchos", path: "/cartucho" },
+          ]} />
         </nav>
       </aside>
 
