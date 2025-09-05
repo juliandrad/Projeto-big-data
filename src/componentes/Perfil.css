@@ -1,17 +1,21 @@
-/* Layout principal */
-.container {
+/* ===== Layout principal ===== */
+.layout {
   display: flex;
   height: 100vh;
   background-color: #edeff0;
+  font-family: Arial, sans-serif;
 }
 
-/* Menu lateral */
+/* ===== Sidebar ===== */
 .sidebar {
-  width: 250px;
-  background-color: #4f8294;
+  width: 260px;
+  background: linear-gradient(180deg, #4f8294, #396170);
   color: white;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
 }
 
 .logo {
@@ -26,26 +30,30 @@ nav {
   padding: 16px;
 }
 
-nav button {
+.menu-item {
+  margin-bottom: 8px;
+}
+
+.menu-button {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding: 10px;
-  margin-bottom: 4px;
   border: none;
   background: none;
   color: white;
   cursor: pointer;
   border-radius: 6px;
   text-align: left;
+  font-size: 16px; /* fonte maior */
   transition: background 0.2s;
 }
 
-nav button:hover {
+.menu-button:hover {
   background-color: #374151;
 }
 
-/* Submenu */
 .submenu {
   padding-left: 20px;
   margin-top: 4px;
@@ -53,50 +61,70 @@ nav button:hover {
 
 .submenu button {
   font-size: 14px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  text-align: left;
 }
 
-/* Área principal */
+.submenu button:hover {
+  color: #d1e7f0;
+}
+
+/* ===== Área principal ===== */
 .main {
   flex: 1;
   padding: 32px;
   overflow-y: auto;
 }
 
-/* Container do perfil */
-.perfil-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
-/* Cabeçalho */
-.perfil-container .header {
-  margin-bottom: 24px;
-}
-
-.perfil-container .header h1 {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-/* Formulário de perfil */
-.form-container h2 {
-  margin-bottom: 20px;
-  font-size: 18px;
+.main-header h1 {
+  font-size: 22px;
   color: #333;
 }
 
-.form-container form {
+.logout-btn {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* ===== Formulário de perfil ===== */
+.form-section {
+  background-color: #fff;
+  padding: 24px;
+  display: flex;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 32px;
+}
+
+.perfil-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.form-container label {
+.perfil-form label {
   display: flex;
   flex-direction: column;
   font-weight: bold;
@@ -104,8 +132,7 @@ nav button:hover {
   color: #555;
 }
 
-.form-container input,
-.form-container select {
+.perfil-form input {
   margin-top: 6px;
   padding: 10px 12px;
   font-size: 14px;
@@ -115,26 +142,8 @@ nav button:hover {
   transition: border 0.2s;
 }
 
-.form-container input:focus,
-.form-container select:focus {
+.perfil-form input:focus {
   border-color: #4f8294;
-}
-
-/* Botão de salvar perfil */
-.form-container button {
-  padding: 8px 12px;
-  font-size: 14px;
-  background-color: #4f8294;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.form-container button:hover {
-  background-color: #3b6570;
 }
 
 /* Grid de permissões */
@@ -166,34 +175,54 @@ nav button:hover {
   border-color: #3b6570;
 }
 
-/* Grid de perfis existentes */
-.grid-perfis {
-  margin-top: 32px;
+/* Botão de ação */
+.submit-btn {
+  padding: 10px 14px;
+  font-size: 14px;
+  background-color: #4f8294;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.grid-perfis h2 {
+.submit-btn:hover {
+  background-color: #3b6570;
+}
+
+/* ===== Grid de perfis ===== */
+.grid-section {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.grid-section h2 {
   margin-bottom: 16px;
   font-size: 18px;
   color: #333;
 }
 
-.grid-perfis table {
+.perfis-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.grid-perfis th,
-.grid-perfis td {
+.perfis-table th,
+.perfis-table td {
   padding: 12px 8px;
   border: 1px solid #ccc;
   text-align: left;
 }
 
-.grid-perfis th {
+.perfis-table th {
   background-color: #f4f4f4;
 }
 
-.grid-perfis td button {
+.perfis-table td button {
   margin-right: 8px;
   padding: 6px 10px;
   font-size: 12px;
@@ -202,49 +231,46 @@ nav button:hover {
   cursor: pointer;
 }
 
-.grid-perfis td button.editar {
+.perfis-table td button.editar {
   background-color: #4f8294;
   color: white;
 }
 
-.grid-perfis td button.editar:hover {
+.perfis-table td button.editar:hover {
   background-color: #3b6570;
 }
 
-.grid-perfis td button.excluir {
+.perfis-table td button.excluir {
   background-color: #f44336;
   color: white;
 }
 
-.grid-perfis td button.excluir:hover {
+.perfis-table td button.excluir:hover {
   background-color: #d32f2f;
 }
 
-/* Responsividade */
+/* ===== Responsividade ===== */
 @media (max-width: 650px) {
-  .perfil-container {
+  .form-section,
+  .grid-section {
     padding: 16px;
     margin: 10px;
   }
 
-  .form-container {
-    padding: 16px;
-  }
-
-  .grid-perfis table,
-  .grid-perfis thead,
-  .grid-perfis tbody,
-  .grid-perfis th,
-  .grid-perfis td,
-  .grid-perfis tr {
+  .perfis-table,
+  .perfis-table thead,
+  .perfis-table tbody,
+  .perfis-table th,
+  .perfis-table td,
+  .perfis-table tr {
     display: block;
   }
 
-  .grid-perfis th {
+  .perfis-table th {
     display: none;
   }
 
-  .grid-perfis td {
+  .perfis-table td {
     display: flex;
     justify-content: space-between;
     padding: 8px 4px;
@@ -252,7 +278,7 @@ nav button:hover {
     border-bottom: 1px solid #ccc;
   }
 
-  .grid-perfis td::before {
+  .perfis-table td::before {
     content: attr(data-label);
     font-weight: bold;
   }

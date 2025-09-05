@@ -1,39 +1,42 @@
-/* Cartucho.css */
-
-.container {
+/* Container geral */
+.layout {
   display: flex;
   min-height: 100vh;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #edeff0;
 }
 
-/* Menu lateral */
+/* Sidebar */
 .sidebar {
-  width: 220px;
-  background-color: #1f2937;
-  color: #fff;
+  width: 260px;
+  background: linear-gradient(180deg, #4f8294, #396170);
+  color: white;
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  border-radius: 10px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
 }
 
 .logo {
-  font-size: 1.8rem;
+  padding: 20px;
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #374151;
 }
 
 .menu-button {
   display: flex;
   align-items: center;
-  background: none;
-  border: none;
-  color: #fff;
-  padding: 12px 20px;
   width: 100%;
+  padding: 10px;
+  margin-bottom: 4px;
+  border: none;
+  background: none;
+  color: white;
   cursor: pointer;
-  font-size: 1rem;
+  border-radius: 6px;
+  text-align: left;
   transition: background 0.2s;
 }
 
@@ -41,25 +44,20 @@
   background-color: #374151;
 }
 
-.menu-button svg {
-  margin-right: 8px;
-}
-
+/* Submenu */
 .submenu {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  margin-bottom: 10px;
+  padding-left: 20px;
+  margin-top: 4px;
 }
 
 .submenu button {
+  font-size: 14px;
+  margin-bottom: 2px;
   background: none;
   border: none;
-  color: #d1d5db;
-  padding: 6px 0;
+  color: #ddd;
   text-align: left;
   cursor: pointer;
-  transition: color 0.2s;
 }
 
 .submenu button:hover {
@@ -69,79 +67,177 @@
 /* Área principal */
 .main {
   flex: 1;
-  padding: 20px;
+  padding: 32px;
+  overflow-y: auto;
 }
 
-/* Container do componente */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.main-header h1 {
+  font-size: 22px;
+  color: #333;
+}
+
+/* Top bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.top-bar span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.top-bar .sair {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.top-bar .sair:hover {
+  background-color: #d32f2f;
+}
+
+/* Container do formulário e grid */
 .cartucho-container {
-  max-width: 1500px;
-  margin: 0 auto;
-}
-
-.header h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #111827;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* Formulário */
 .form-container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  margin-bottom: 30px;
+  display: grid;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
-.form-container h2 {
-  margin-bottom: 15px;
-  color: #111827;
+/* Linha de campos */
+.form-row {
+  display: flex;
+  gap: 16px; /* espaçamento entre campos */
+  flex-wrap: wrap; /* permite quebra de linha em telas pequenas */
 }
 
-.form-container label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 500;
-  color: #374151;
+.form-row label {
+  flex: 1; /* todos os campos da linha ocupam espaço proporcional */
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-container label:not(.form-row label) {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
 }
 
 .form-container input,
 .form-container select {
-  width: 100%;
-  padding: 8px 10px;
-  margin-top: 4px;
-  margin-bottom: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 5px;
-  font-size: 1rem;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+  border-color: #4f8294;
 }
 
 .form-container button {
-  background-color: #2563eb;
-  color: #fff;
+  padding: 8px 16px;
+  font-size: 14px;
+  max-width: 160px;
+  margin-top: 20px;
+  background-color: #4f8294;
+  color: white;
+  font-weight: bold;
   border: none;
-  padding: 10px 16px;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
   transition: background 0.2s;
 }
 
 .form-container button:hover {
-  background-color: #1d4ed8;
+  background-color: #3b6570;
+}
+
+/* Botões de exportação */
+.export-buttons {
+position: absolute;
+  top: 24px;   /* mesmo padding da seção */
+  right: 24px; /* mesmo padding da seção */
+  display: flex;
+  gap: 8px;
+}
+
+.export-buttons button {
+  padding: 4px 10px;
+  font-size: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.export-buttons button:first-child {
+  background-color: #70d893;
+  color: white;
+}
+
+.export-buttons button:first-child:hover {
+  background-color: #579c6e;
+}
+
+.export-buttons button:last-child {
+  background-color: #ce6b64;
+  color: white;
+}
+
+.export-buttons button:last-child:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsividade */
+@media (max-width: 650px) {
+  .form-row {
+    flex-direction: column; /* campos empilham em telas pequenas */
+  }
 }
 
 /* Grid de cartuchos */
 .grid-cartuchos {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 16px;
 }
 
 .grid-cartuchos h2 {
-  margin-bottom: 15px;
-  color: #111827;
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #333;
 }
 
 .grid-cartuchos table {
@@ -151,46 +247,75 @@
 
 .grid-cartuchos th,
 .grid-cartuchos td {
-  padding: 10px;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 12px 8px;
+  border: 1px solid #ccc;
   text-align: left;
-  font-size: 0.95rem;
-  color: #374151;
+  font-size: 14px;
 }
 
 .grid-cartuchos th {
-  background-color: #f3f4f6;
-  font-weight: 600;
+  background-color: #f4f4f4;
+  font-weight: bold;
 }
 
-.grid-cartuchos button {
-  background-color: #10b981;
-  color: #fff;
+.grid-cartuchos td button {
+  margin-right: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
   border: none;
-  padding: 6px 10px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.2s;
 }
 
-.grid-cartuchos button:hover {
-  background-color: #059669;
+.grid-cartuchos td button.editar {
+  background-color: #4f8294;
+  color: white;
 }
 
-/* QR Code */
-.qr-container {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.grid-cartuchos td button.editar:hover {
+  background-color: #3b6570;
 }
 
-.qr-container h3 {
-  margin-bottom: 15px;
-  color: #111827;
+.grid-cartuchos td button.excluir {
+  background-color: #f44336;
+  color: white;
+}
+
+.grid-cartuchos td button.excluir:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsividade */
+@media (max-width: 650px) {
+  .cartucho-container,
+  .form-container {
+    padding: 16px;
+    margin: 10px;
+  }
+
+  .grid-cartuchos table,
+  .grid-cartuchos thead,
+  .grid-cartuchos tbody,
+  .grid-cartuchos th,
+  .grid-cartuchos td,
+  .grid-cartuchos tr {
+    display: block;
+  }
+
+  .grid-cartuchos th {
+    display: none;
+  }
+
+  .grid-cartuchos td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 4px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .grid-cartuchos td::before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
 }

@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
-import { FaLaptop, FaCogs } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaCogs, FaLaptop, FaBuilding, FaChartBar, FaUsers, FaServer, FaExclamationTriangle } from "react-icons/fa";
 import "./Perfil.css";
 
 function Perfil() {
-  const [equipmentOpen, setEquipmentOpen] = useState(false);
-  const [configOpen, setConfigOpen] = useState(false);
   const navigate = useNavigate();
 
   // Dados do formulário de perfil
   const [formData, setFormData] = useState({
+    id: null,
     nome: "",
     permissoes: [],
   });
@@ -39,14 +38,14 @@ function Perfil() {
   // Selecionar/deselecionar permissão
   const handleTogglePermissao = (perm) => {
     if (formData.permissoes.includes(perm)) {
-      setFormData({ 
-        ...formData, 
-        permissoes: formData.permissoes.filter((p) => p !== perm) 
+      setFormData({
+        ...formData,
+        permissoes: formData.permissoes.filter((p) => p !== perm),
       });
     } else {
-      setFormData({ 
-        ...formData, 
-        permissoes: [...formData.permissoes, perm] 
+      setFormData({
+        ...formData,
+        permissoes: [...formData.permissoes, perm],
       });
     }
   };
@@ -55,14 +54,23 @@ function Perfil() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.nome) return alert("Informe o nome do perfil!");
-    const novoPerfil = {
-      id: Date.now(),
-      nome: formData.nome,
-      permissoes: formData.permissoes,
-    };
-    setPerfis([...perfis, novoPerfil]);
-    setFormData({ nome: "", permissoes: [] });
-    alert("Perfil cadastrado com sucesso!");
+
+    if (formData.id) {
+      // Atualizar perfil existente
+      setPerfis(perfis.map((p) => (p.id === formData.id ? formData : p)));
+      alert("Perfil atualizado com sucesso!");
+    } else {
+      // Criar novo perfil
+      const novoPerfil = {
+        id: Date.now(),
+        nome: formData.nome,
+        permissoes: formData.permissoes,
+      };
+      setPerfis([...perfis, novoPerfil]);
+      alert("Perfil cadastrado com sucesso!");
+    }
+
+    setFormData({ id: null, nome: "", permissoes: [] });
   };
 
   // Excluir perfil
@@ -78,104 +86,148 @@ function Perfil() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Componente de menu lateral
+  function SidebarMenu({ icon, label, submenuItems }) {
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleClick = (item) => {
+      if (item.path) navigate(item.path);
+      if (item.action) item.action();
+    };
+
+    return (
+      <div className="menu-item">
+        <button className="menu-button" onClick={() => setOpen(!open)}>
+          {icon} <span>{label}</span>
+          {submenuItems && <span className="arrow">{open ? "▲" : "▼"}</span>}
+        </button>
+        {open && submenuItems && (
+          <div className="submenu">
+            {submenuItems.map((item, index) => (
+              <button key={index} onClick={() => handleClick(item)}>
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className="container">
-      {/* Menu lateral */}
+    <div className="layout">
+      {/* Sidebar */}
       <aside className="sidebar">
         <div className="logo">InvenTI</div>
         <nav>
-          <button className="menu-button" onClick={() => setConfigOpen(!configOpen)}>
-            <FaCogs /> Configurações
-          </button>
-          {configOpen && (
-            <div className="submenu">
-              <button onClick={() => navigate("/usuarios")}>Usuários</button>
-              <button onClick={() => navigate("/perfil")}>Perfis</button>
-            </div>
-          )}
-          <button className="menu-button">Departamentos</button>
-          <button className="menu-button" onClick={() => setEquipmentOpen(!equipmentOpen)}>
-            <FaLaptop /> Equipamentos
-          </button>
-          {equipmentOpen && (
-            <div className="submenu">
-              <button>Notebooks</button>
-              <button>Monitores</button>
-              <button onClick={() => navigate("/impressora")}>Impressoras</button>
-              <button onClick={() => navigate("/cartucho")}>Cartuchos</button>
-              <button>Servidores</button>
-              <button>Periféricos</button>
-            </div>
-          )}
+        <SidebarMenu icon={<FaChartBar />} label="Início" path="/home" 
+            submenuItems={[
+              { label: "Dashboard", path: "/home"}
+            ]}/>
+          <SidebarMenu
+            icon={<FaCogs />}
+            label="Configurações"
+            submenuItems={[
+              { label: "Usuários", path: "/usuarios" },
+              { label: "Perfis", path: "/perfil" },
+            ]}
+          />
+          <SidebarMenu
+            icon={<FaLaptop />}
+            label="Equipamentos"
+            submenuItems={[
+              { label: "Notebooks" },
+              { label: "Monitores" },
+              { label: "Impressoras", path: "/impressora" },
+              { label: "Cartuchos", path: "/cartucho" },
+              { label: "Servidores" },
+              { label: "Periféricos" },
+            ]}
+          />
         </nav>
       </aside>
 
       {/* Área principal */}
       <main className="main">
-        <div className="perfil-container">
-          <header className="header">
-            <h1>Cadastro de Perfil</h1>
-          </header>
+        <header className="main-header">
+          <h1>Cadastre e consulte: Perfil de acesso</h1>
+          <button className="logout-btn" onClick={() => navigate("/login")}>
+            Sair
+          </button>
+        </header>
 
-          {/* Formulário de perfil */}
-          <div className="form-container">
-            <h2>Informações do Perfil</h2>
-            <form onSubmit={handleSubmit}>
-              <label>
-                Nome do Perfil:
-                <input
-                  type="text"
-                  name="nome"
-                  placeholder="Ex: Admin"
-                  value={formData.nome}
-                  onChange={handleChangeNome}
-                  required
-                />
-              </label>
+        {/* Formulário */}
+        <section className="form-section">
+          <form className="perfil-form" onSubmit={handleSubmit}>
+            <label>
+              Nome do Perfil:
+              <input
+                type="text"
+                name="nome"
+                placeholder="Ex: Admin"
+                value={formData.nome}
+                onChange={handleChangeNome}
+                required
+              />
+            </label>
 
-              <label>Permissões:</label>
-              <div className="permissoes-grid">
-                {permissoesDisponiveis.map((perm) => (
-                  <div
-                    key={perm}
-                    className={`perm-item ${formData.permissoes.includes(perm) ? "selecionado" : ""}`}
-                    onClick={() => handleTogglePermissao(perm)}
-                  >
-                    {perm}
-                  </div>
-                ))}
-              </div>
+            <label>Permissões:</label>
+            <div className="permissoes-grid">
+              {permissoesDisponiveis.map((perm) => (
+                <div
+                  key={perm}
+                  className={`perm-item ${
+                    formData.permissoes.includes(perm) ? "selecionado" : ""
+                  }`}
+                  onClick={() => handleTogglePermissao(perm)}
+                >
+                  {perm}
+                </div>
+              ))}
+            </div>
 
-              <button type="submit">Salvar Perfil</button>
-            </form>
-          </div>
+            <button type="submit" className="submit-btn">
+              {formData.id ? "Salvar Alterações" : "Cadastrar Perfil"}
+            </button>
+          </form>
+        </section>
 
-          {/* Grid de perfis existentes */}
-          <div className="grid-perfis">
-            <h2>Perfis Existentes</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Permissões</th>
-                  <th>Ações</th>
+        {/* Grid de perfis */}
+        <section className="grid-section">
+          <h2>Perfis Existentes</h2>
+          <table className="perfis-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Permissões</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {perfis.map((perfil) => (
+                <tr key={perfil.id}>
+                  <td>{perfil.nome}</td>
+                  <td>{perfil.permissoes.join(", ")}</td>
+                  <td>
+                    <button
+                      className="editar"
+                      onClick={() => handleEditar(perfil)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="excluir"
+                      onClick={() => handleExcluir(perfil.id)}
+                    >
+                      Excluir
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {perfis.map((perfil) => (
-                  <tr key={perfil.id}>
-                    <td>{perfil.nome}</td>
-                    <td>{perfil.permissoes.join(", ")}</td>
-                    <td>
-                      <button className="editar" onClick={() => handleEditar(perfil)}>Editar</button>
-                      <button className="excluir" onClick={() => handleExcluir(perfil.id)}>Excluir</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+              ))}
+            </tbody>
+          </table>
+        </section>
       </main>
     </div>
   );

@@ -1,45 +1,134 @@
-/* Container principal da página de usuário */
-.usuario-container {
-  max-width: 1500px;
-  margin: 40px auto;
-  padding: 24px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+/* Layout principal */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
 }
 
-/* Cabeçalho */
-.usuario-container .header {
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar .logo {
+  font-size: 20px;
+  font-weight: bold;
   margin-bottom: 24px;
 }
 
-.usuario-container .header h1 {
-  font-size: 24px;
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-item {
   margin-bottom: 8px;
 }
 
-.usuario-container .header div {
-  color: #555;
+.menu-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
-/* Formulário */
-.form-container {
+.menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.submenu {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  background-color: #fefefe;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-left: 20px;
+  margin-top: 6px;
 }
 
-.form-container h2 {
-  font-size: 20px;
-  margin-bottom: 16px;
+.submenu button {
+  background: none;
+  border: none;
+  color: #ddd;
+  font-size: 13px;
+  text-align: left;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.submenu button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Área principal */
+.main {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Cabeçalho principal */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-header h1 {
+  font-size: 22px;
   color: #333;
 }
 
-.form-container label {
+.main-header .logout-btn {
+  background-color: #c50b0ba9 !important; /* vermelho suave */
+  color: white !important;
+  padding: 3px 10px !important; /* menor tamanho */
+  font-size: 12px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background 0.2s, transform 0.1s !important;
+}
+
+.main-header .logout-btn:hover {
+  background-color: #ef9a9a !important; /* hover mais claro */
+  transform: translateY(-1px) !important;
+}
+
+.main-header .logout-btn:active {
+  transform: translateY(0) !important; /* efeito clique */
+}
+
+/* Seção de formulário */
+.form-section {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.usuario-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.usuario-form label {
   display: flex;
   flex-direction: column;
   font-weight: bold;
@@ -47,29 +136,26 @@
   color: #555;
 }
 
-.form-container input,
-.form-container select {
+.usuario-form input,
+.usuario-form select {
   margin-top: 6px;
-  padding: 8px 16px; /* menor padding para compactar */
+  padding: 8px 16px;
   font-size: 14px;
-  margin:10px;
   border: 1px solid #ccc;
   border-radius: 6px;
   outline: none;
   transition: border 0.2s;
 }
 
-.form-container input:focus,
-.form-container select:focus {
+.usuario-form input:focus,
+.usuario-form select:focus {
   border-color: #4f8294;
 }
 
-/* Botão de envio */
-.form-container button {
-  padding: 6px 12px; /* vertical 6px, horizontal 12px */
-  margin:15px;
-  font-size: 13px; /* fonte menor */
-  max-width: 150px; /* largura máxima */
+.submit-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  max-width: 180px;
   background-color: #4f8294;
   color: white;
   font-weight: bold;
@@ -79,91 +165,137 @@
   transition: background 0.2s;
 }
 
-.form-container button:hover {
+.submit-btn:hover {
   background-color: #3b6570;
 }
 
-/* Grid de usuários */
-.grid-usuarios {
-  margin-top: 32px;
+/* Container da seção do grid */
+.grid-section {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.grid-usuarios h2 {
-  margin-bottom: 16px;
-  font-size: 18px;
+/* Cabeçalho do grid: título à esquerda, botões à direita */
+.grid-header {
+  position: relative;/* permite posicionar elementos absolutos dentro dela */
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.grid-header h2 {
+  font-size: 20px;
   color: #333;
+  margin: 0;
 }
 
-.grid-usuarios table {
+/* Botões de exportação */
+.export-buttons {
+position: absolute;
+  top: 24px;   /* mesmo padding da seção */
+  right: 24px; /* mesmo padding da seção */
+  display: flex;
+  gap: 8px;
+}
+
+.export-buttons button {
+  padding: 4px 10px;
+  font-size: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.export-buttons button:first-child {
+  background-color: #70d893;
+  color: white;
+}
+
+.export-buttons button:first-child:hover {
+  background-color: #579c6e;
+}
+
+.export-buttons button:last-child {
+  background-color: #ce6b64;
+  color: white;
+}
+
+.export-buttons button:last-child:hover {
+  background-color: #d32f2f;
+}
+
+/* Tabela de usuários */
+.usuarios-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.grid-usuarios th,
-.grid-usuarios td {
+.usuarios-table th,
+.usuarios-table td {
   padding: 12px 8px;
   border: 1px solid #ccc;
   text-align: left;
 }
 
-.grid-usuarios th {
+.usuarios-table th {
   background-color: #f4f4f4;
 }
 
-.grid-usuarios td button {
+.usuarios-table td button {
   margin-right: 6px;
   padding: 4px 8px;
   font-size: 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  align-items: center;
 }
 
-.grid-usuarios td button.editar {
+.usuarios-table td button.editar {
   background-color: #4f8294;
   color: white;
-  align-items: center;
 }
 
-.grid-usuarios td button.editar:hover {
+.usuarios-table td button.editar:hover {
   background-color: #3b6570;
 }
 
-.grid-usuarios td button.excluir {
+.usuarios-table td button.excluir {
   background-color: #f44336;
   color: white;
 }
 
-.grid-usuarios td button.excluir:hover {
+.usuarios-table td button.excluir:hover {
   background-color: #d32f2f;
 }
 
 /* Responsividade */
 @media (max-width: 650px) {
-  .usuario-container {
-    padding: 16px;
-    margin: 10px;
+  .grid-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .form-container {
-    padding: 16px;
-  }
-
-  .grid-usuarios table,
-  .grid-usuarios thead,
-  .grid-usuarios tbody,
-  .grid-usuarios th,
-  .grid-usuarios td,
-  .grid-usuarios tr {
+  .usuarios-table,
+  .usuarios-table thead,
+  .usuarios-table tbody,
+  .usuarios-table th,
+  .usuarios-table td,
+  .usuarios-table tr {
     display: block;
   }
 
-  .grid-usuarios th {
+  .usuarios-table th {
     display: none;
   }
 
-  .grid-usuarios td {
+  .usuarios-table td {
     display: flex;
     justify-content: space-between;
     padding: 8px 4px;
@@ -171,7 +303,7 @@
     border-bottom: 1px solid #ccc;
   }
 
-  .grid-usuarios td::before {
+  .usuarios-table td::before {
     content: attr(data-label);
     font-weight: bold;
   }

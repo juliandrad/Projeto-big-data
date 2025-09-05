@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaLaptop, FaUsers, FaServer, FaExclamationTriangle, FaCogs } from "react-icons/fa";
+import { FaCogs, FaLaptop, FaBuilding, FaChartBar, FaUsers, FaServer, FaExclamationTriangle } from "react-icons/fa";
 import "./Home.css";
 
 function DashboardCard({ title, value, icon, color }) {
@@ -11,56 +11,82 @@ function DashboardCard({ title, value, icon, color }) {
         <div className="card-icon">{icon}</div>
         <h2>{title}</h2>
       </div>
-      <p>{value}</p>
+      <p className="card-value">{value}</p>
     </div>
   );
 }
 
-function Home() {
-  const [equipmentOpen, setEquipmentOpen] = useState(false);
-  const [configOpen, setConfigOpen] = useState(false);
-
+// Componente de item de menu com submenu
+function SidebarMenu({ icon, label, submenuItems }) {
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
+  const handleClick = (item) => {
+    if (item.path) navigate(item.path);
+    if (item.action) item.action();
+  };
+
   return (
-    <div className="container">
-      {/* Menu lateral */}
+    <div className="menu-item">
+      <button className="menu-button" onClick={() => setOpen(!open)}>
+        {icon} <span>{label}</span>
+        {submenuItems && <span className="arrow">{open ? "▲" : "▼"}</span>}
+      </button>
+      {open && submenuItems && (
+        <div className="submenu">
+          {submenuItems.map((item, index) => (
+            <button key={index} onClick={() => handleClick(item)}>
+              {item.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Home com sidebar
+function Home() {
+  return (
+    <div className="layout">
+      {/* Sidebar */}
       <aside className="sidebar">
         <div className="logo">InvenTI</div>
         <nav>
-          <button className="menu-button" onClick={() => setConfigOpen(!configOpen)}>
-            <FaCogs /> Configurações
-          </button>
-          {configOpen && (
-            <div className="submenu">
-              <button onClick={() => navigate("/usuarios")}>Usuários</button>
-              <button onClick={() => navigate("/perfil")}>Perfis</button>
-            </div>
-          )}
-
-          <button className="menu-button">Departamentos</button>
-
-          <button className="menu-button" onClick={() => setEquipmentOpen(!equipmentOpen)}>
-            <FaLaptop /> Equipamentos
-          </button>
-          {equipmentOpen && (
-            <div className="submenu">
-              <button>Notebooks</button>
-              <button>Monitores</button>
-              <button onClick={() => navigate("/impressora")}>Impressoras</button>
-              <button onClick={() => navigate("/cartucho")}>Cartuchos</button>
-              <button>Servidores</button>
-              <button>Periféricos</button>
-            </div>
-          )}
+        <SidebarMenu icon={<FaChartBar />} label="Início" path="/home" 
+            submenuItems={[
+              { label: "Dashboard", path: "/home"}
+            ]}/>
+          <SidebarMenu
+            icon={<FaCogs />}
+            label="Configurações"
+            submenuItems={[
+              { label: "Usuários", path: "/usuarios" },
+              { label: "Perfis", path: "/perfil" },
+            ]}
+          />
+          <SidebarMenu
+            icon={<FaLaptop />}
+            label="Equipamentos"
+            submenuItems={[
+              { label: "Notebooks" },
+              { label: "Monitores" },
+              { label: "Impressoras", path: "/impressora" },
+              { label: "Cartuchos", path: "/cartucho" },
+              { label: "Servidores" },
+              { label: "Periféricos" },
+            ]}
+          />
         </nav>
       </aside>
 
       {/* Área principal */}
       <main className="main">
-        <header className="header">
-          <h1>Dashboard</h1>
-          <div>Olá, Admin</div>
+        <header className="main-header">
+          <h1>Olá, Admin</h1>
+          <button className="logout-btn" onClick={() => window.location.href = "/login"}>
+            Sair
+          </button>
         </header>
 
         {/* Painel de resumo */}
